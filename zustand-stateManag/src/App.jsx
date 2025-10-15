@@ -1,13 +1,15 @@
 import { useState } from "react";
 import "./App.css";
+import CourseForm from "./components/CourseForm";
+import CourseList from "./components/CourseList";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <h1>hello world</h1>
-    </>
+    <div className="main-container">
+      <h1>My Course List!</h1>
+      <CourseForm />
+      <CourseList />
+    </div>
   );
 }
 
