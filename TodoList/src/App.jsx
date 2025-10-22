@@ -7,12 +7,39 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setTitle("");
-    console.log(title);
     setDescription("");
-    console.log(description);
+    setTasks([...tasks, { title, description }]);
+    console.log(tasks);
   };
 
-  const randerTasks = <h2>No Task here!</h2>;
+  const deleteTask = (i) => {
+    const copytask = [...tasks];
+    copytask.splice(i, 1);
+    setTasks(copytask);
+  };
+
+  let randerTasks = <h2>No Task here!</h2>;
+  if (tasks.length > 0) {
+    randerTasks = tasks.map((t, i) => {
+      return (
+        <li className="flex items-center justify-between mb-2.5 bg-white rounded p-4">
+          <div className=" flex justify-between text-2xl font-bold mb-2 w-2/3">
+            <h3>{t.title}</h3>
+            <h4>{t.description}</h4>
+          </div>
+          <button
+            className="bg-red-400 text-2xl p-2.5 rounded-b-sm hover:bg-red-600"
+            onClick={() => {
+              deleteTask(i);
+            }}
+          >
+            Delete
+          </button>
+        </li>
+      );
+    });
+  }
+
   return (
     <>
       <h1 className="bg-black text-white py-8 text-center text-4xl font-bold underline underline-offset-4">
